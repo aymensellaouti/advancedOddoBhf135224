@@ -57,6 +57,8 @@ import { Logger2Service } from './services/logger2.service';
 
 import { v4 as uuidv4 } from 'uuid';
 import { UUID_TOKEN } from './provider tokens/uuid.provider-token';
+import { WeekTodoComponent } from './todo/week-todo/week-todo.component';
+import { MasterDetailsComponent } from './cv/master-details/master-details.component';
 
 @NgModule({
   declarations: [
@@ -95,6 +97,8 @@ import { UUID_TOKEN } from './provider tokens/uuid.provider-token';
     RhComponent,
     UserListComponent,
     ProductsComponent,
+    WeekTodoComponent,
+    MasterDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -129,16 +133,16 @@ import { UUID_TOKEN } from './provider tokens/uuid.provider-token';
                 ? FakeCvService:
                 CvService
      },
-     {
-      provide: LoggerService,
-      useClass: LoggerService,
-      multi: true
-     },
-     {
-      provide: LoggerService,
-      useClass: Logger2Service,
-      multi: true
-     },
+    //  {
+    //   provide: LoggerService,
+    //   useClass: LoggerService,
+    //   multi: true
+    //  },
+    //  {
+    //   provide: LoggerService,
+    //   useClass: Logger2Service,
+    //   multi: true
+    //  },
      {
       provide: UUID_TOKEN,
       useValue: () => 'dima howa bidou'
