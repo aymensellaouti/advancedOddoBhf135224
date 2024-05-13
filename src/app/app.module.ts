@@ -2,7 +2,7 @@ import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { ToastrModule } from 'ngx-toastr';
 
@@ -47,6 +47,13 @@ import { RhComponent } from './optimizationPattern/rh/rh.component';
 import { UserListComponent } from './optimizationPattern/user-list/user-list.component';
 import { ProductsComponent } from './products/products.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { LOGGER_TOKEN } from './provider tokens/logger.injection-token';
+import { loggerProviderFactory } from './factory providers/logger.factory-provider';
+import { LoggerService } from './services/logger.service';
+import { CvService } from './cv/services/cv.service';
+import { CONSTANTES } from 'src/config/const.config';
+import { FakeCvService } from './cv/services/fake-cv.service';
+import { Logger2Service } from './services/logger2.service';
 
 @NgModule({
   declarations: [
@@ -84,7 +91,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     TestHttpComponent,
     RhComponent,
     UserListComponent,
-    ProductsComponent
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,
@@ -97,10 +104,40 @@ import { ServiceWorkerModule } from '@angular/service-worker';
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
-  providers: [AuthInterceptorProvider],
+  providers: [
+    AuthInterceptorProvider,
+    // {
+    //   provide: LOGGER_TOKEN,
+    //   useFactory: loggerProviderFactory,
+    //   deps: [HttpClient]
+    // },
+    // {
+    //   provide: LoggerService,
+    //   useClass: LoggerService,
+    //   //deps: [HttpClient]
+    // },
+    // LoggerService
+    {
+      provide: CvService,
+      useClass: CONSTANTES.env === 'prod'
+                ? FakeCvService:
+                CvService
+     },
+     {
+      provide: LoggerService,
+      useClass: LoggerService,
+      multi: true
+     },
+     {
+      provide: LoggerService,
+      useClass: Logger2Service,
+      multi: true
+     },
+
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
