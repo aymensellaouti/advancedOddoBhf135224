@@ -11,9 +11,9 @@ import { LoggerService } from './services/logger.service';
 export class AppComponent {
   // logger = new LoggerService();
   constructor(
-    @Inject(LoggerService) private loggers: LoggerService[]
+    // @Inject(LoggerService) private loggers: LoggerService[]
   ) {
-    this.loggers.forEach(logger => {logger.logger('cc logged form injected service logger');})
+    //this.loggers.forEach(logger => {logger.logger('cc logged form injected service logger');})
   }
   title = 'Starting Advanced Topics';
 }

@@ -55,6 +55,9 @@ import { CONSTANTES } from 'src/config/const.config';
 import { FakeCvService } from './cv/services/fake-cv.service';
 import { Logger2Service } from './services/logger2.service';
 
+import { v4 as uuidv4 } from 'uuid';
+import { UUID_TOKEN } from './provider tokens/uuid.provider-token';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -136,6 +139,10 @@ import { Logger2Service } from './services/logger2.service';
       useClass: Logger2Service,
       multi: true
      },
+     {
+      provide: UUID_TOKEN,
+      useValue: () => 'dima howa bidou'
+     }
 
   ],
   bootstrap: [AppComponent],
