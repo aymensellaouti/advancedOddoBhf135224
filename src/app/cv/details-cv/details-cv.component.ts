@@ -39,6 +39,7 @@ export class DetailsCvComponent implements OnInit {
       //       },
       //     });
     );
+    // this.cvService.selectByName
   }
   deleteCv(cv: Cv) {
     this.cvService.deleteCvById(cv.id).subscribe({

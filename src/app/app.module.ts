@@ -1,7 +1,7 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { ToastrModule } from 'ngx-toastr';
@@ -61,6 +61,7 @@ import { WeekTodoComponent } from './todo/week-todo/week-todo.component';
 import { MasterDetailsComponent } from './cv/master-details/master-details.component';
 import { FromOfComponent } from './rxjs/from-of/from-of.component';
 import { SliderComponent } from './rxjs/slider/slider.component';
+import { AutocompleteComponent } from './cv/autocomplete/autocomplete.component';
 
 @NgModule({
   declarations: [
@@ -103,6 +104,7 @@ import { SliderComponent } from './rxjs/slider/slider.component';
     MasterDetailsComponent,
     FromOfComponent,
     SliderComponent,
+    AutocompleteComponent,
   ],
   imports: [
     BrowserModule,
@@ -111,6 +113,7 @@ import { SliderComponent } from './rxjs/slider/slider.component';
     ToastrModule.forRoot(), // ToastrModule added
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
