@@ -59,6 +59,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { UUID_TOKEN } from './provider tokens/uuid.provider-token';
 import { WeekTodoComponent } from './todo/week-todo/week-todo.component';
 import { MasterDetailsComponent } from './cv/master-details/master-details.component';
+import { FromOfComponent } from './rxjs/from-of/from-of.component';
+import { SliderComponent } from './rxjs/slider/slider.component';
 
 @NgModule({
   declarations: [
@@ -99,6 +101,8 @@ import { MasterDetailsComponent } from './cv/master-details/master-details.compo
     ProductsComponent,
     WeekTodoComponent,
     MasterDetailsComponent,
+    FromOfComponent,
+    SliderComponent,
   ],
   imports: [
     BrowserModule,

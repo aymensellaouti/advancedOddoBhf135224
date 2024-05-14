@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Todo } from '../model/todo';
 import { TodoService } from '../service/todo.service';
+import { CanLeave } from 'src/app/guard/canLeave.interface';
 
 @Component({
   selector: 'app-todo',
@@ -8,7 +9,7 @@ import { TodoService } from '../service/todo.service';
   styleUrls: ['./todo.component.css'],
   providers: [TodoService]
 })
-export class TodoComponent {
+export class TodoComponent implements CanLeave {
   todos: Todo[] = [];
   todo = new Todo();
   constructor(private todoService: TodoService) {
@@ -21,5 +22,12 @@ export class TodoComponent {
 
   deleteTodo(todo: Todo) {
     this.todoService.deleteTodo(todo);
+  }
+
+  canLeave(): boolean {
+    if(this.todo.name.trim() || this.todo.name.trim()) {
+     return false;
+    }
+    return true;
   }
 }
