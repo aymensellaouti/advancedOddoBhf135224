@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Cv } from '../model/cv';
 import {  Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { API } from '../../../config/api.config';
 
 @Injectable({
@@ -93,4 +93,25 @@ export class CvService {
     return false;
   }
 
+  /**
+   * Recherche les cvs dont le name contient la chaine name passée en paramètre
+   * @param name : string
+   * @returns cvs Cv[]
+   */
+  selectByName(name: string) {
+    const search = `{"where":{"name":{"like":"%${name}%"}}}`;
+    const params = new HttpParams().set('filter', search);
+    return this.http.get<any>(API.cv, { params });
+  }
+  /**
+   * Recherche les cvs dont la valeur est égale à la chaine passée en paramètre
+   * @param property : string, la propriété sur laquelle on va requeter
+   * @param value : string, la valeur de la propriété sur laquelle on va requeter
+   * @returns cvs Cv[]
+   */
+  selectByProperty(property: string, value: string) {
+    const search = `{"where":{"${property}":"${value}"}}`;
+    const params = new HttpParams().set('filter', search);
+    return this.http.get<Cv[]>(API.cv, { params });
+  }
 }
