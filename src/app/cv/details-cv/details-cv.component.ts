@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { APP_ROUTES } from '../../../config/routes.config';
 import { AuthService } from '../../auth/services/auth.service';
-import { switchMap } from 'rxjs';
+import { EMPTY, Observable, catchError, map, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-details-cv',
@@ -13,10 +13,18 @@ import { switchMap } from 'rxjs';
   styleUrls: ['./details-cv.component.css'],
 })
 export class DetailsCvComponent implements OnInit {
-  cv: Cv | null = null;
-  cv$ = this.activatedRoute.params.pipe(
-    switchMap((params) => this.cvService.getCvById(+params['id']))
+  cv$: Observable<Cv> = this.activatedRoute.data
+  .pipe(
+    tap(() => console.log('subscribtion')),
+    map((data) => data['cv']),
+    catchError((e) => {
+      this.router.navigate([APP_ROUTES.cv]);
+      return EMPTY;
+    })
   );
+  // cv$ = this.activatedRoute.params.pipe(
+  //   switchMap((params) => this.cvService.getCvById(+params['id']))
+  // );
   constructor(
     private cvService: CvService,
     private router: Router,
@@ -27,18 +35,18 @@ export class DetailsCvComponent implements OnInit {
 
   ngOnInit() {
     // const id = this.activatedRoute.snapshot.params['id'];
-    this.activatedRoute.data.subscribe(
-      (data) => (this.cv = data['cv'])
-      // params => {
-      //     this.cvService.getCvById(+params['id']).subscribe({
-      //       next: (cv) => {
-      //         this.cv = cv;
-      //       },
-      //       error: (e) => {
-      //         this.router.navigate([APP_ROUTES.cv]);
-      //       },
-      //     });
-    );
+    // .subscribe(
+    //   (data) => (this.cv = data['cv'])
+    //   // params => {
+    //   //     this.cvService.getCvById(+params['id']).subscribe({
+    //   //       next: (cv) => {
+    //   //         this.cv = cv;
+    //   //       },
+    //   //       error: (e) => {
+    //   //
+    //   //       },
+    //   //     });
+    // );
     // this.cvService.selectByName
   }
   deleteCv(cv: Cv) {
