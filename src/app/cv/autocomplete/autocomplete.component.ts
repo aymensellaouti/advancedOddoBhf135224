@@ -12,4 +12,5 @@ export class AutocompleteComponent {
     return this.form.get('search')!;
   }
   form = this.formBuilder.group({ search: [''] });
+  cvs$ = this.search.valueChanges
 }
