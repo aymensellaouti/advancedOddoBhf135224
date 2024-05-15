@@ -10,7 +10,10 @@ import { API } from '../../../config/api.config';
 export class CvService {
   private cvs: Cv[] = [];
   #selectCvSubject = new Subject<Cv>();
-  selectCv$ = this.#selectCvSubject.asObservable();
+  /**
+   * Représente le flux des cv sélectionnés dans le item component
+   */
+  selectedCv$ = this.#selectCvSubject.asObservable();
   constructor(private http: HttpClient) {
     this.cvs = [
       new Cv(1, 'aymen', 'sellaouti', 'teacher', 'as.jpg', '1234', 40),
@@ -115,5 +118,14 @@ export class CvService {
     const search = `{"where":{"${property}":"${value}"}}`;
     const params = new HttpParams().set('filter', search);
     return this.http.get<Cv[]>(API.cv, { params });
+  }
+
+  /**
+   * Cette fonction permet de notifier tous les inscrits qu'un cv
+   * a été sélectionné
+   * @param cv Le cv sélectionné
+   */
+  selectCv(cv: Cv) {
+    this.#selectCvSubject.next(cv);
   }
 }

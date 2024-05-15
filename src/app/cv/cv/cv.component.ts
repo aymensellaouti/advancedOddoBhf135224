@@ -23,7 +23,7 @@ export class CvComponent {
     }),
 
   );
-  selectedCv: Cv | null = null;
+  selectedCv$: Observable<Cv> = this.cvService.selectedCv$;
   /*   selectedCv: Cv | null = null; */
   date = new Date();
 
