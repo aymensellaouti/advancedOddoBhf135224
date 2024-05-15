@@ -45,6 +45,13 @@
           >Master Details</a
         >
         <a
+          class="nav-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+          [routerLink]="['products']"
+          routerLinkActive="active text-primary"
+          >Products</a
+        >
+        <a
           *ngIf="authService.loggedIn$ | async"
           class="nav-link"
           [routerLink]="['cv/add']"

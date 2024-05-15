@@ -15,10 +15,12 @@ import { RhComponent } from "./optimizationPattern/rh/rh.component";
 import { MasterDetailsComponent } from "./cv/master-details/master-details.component";
 import { detailsResolver } from "./cv/resolvers/details.resolver";
 import { canLeaveGuard } from "./guard/can-leave.guard";
+import { ProductsComponent } from "./products/products.component";
 // cv/list
 const routes: Route[] = [
   { path: 'login', component: LoginComponent },
   { path: 'rh', component: RhComponent },
+  { path: 'products', component: ProductsComponent },
   {
     path: 'cv',
     component: CvComponent,
