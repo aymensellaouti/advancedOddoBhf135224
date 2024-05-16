@@ -50,8 +50,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { UUID_TOKEN } from './provider tokens/uuid.provider-token';
 import { FromOfComponent } from './rxjs/from-of/from-of.component';
 import { SliderComponent } from './rxjs/slider/slider.component';
-import { TodoModule } from './todo/todo.module';
-import { CvModule } from './cv/cv.module';
+
 
 @NgModule({
   declarations: [
@@ -82,7 +81,6 @@ import { CvModule } from './cv/cv.module';
     ProductsComponent,
     FromOfComponent,
     SliderComponent,
-
     CardProfilComponent,
   ],
   imports: [
@@ -92,7 +90,6 @@ import { CvModule } from './cv/cv.module';
     ToastrModule.forRoot(), // ToastrModule added
     AppRoutingModule,
     HttpClientModule,
-    CvModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),

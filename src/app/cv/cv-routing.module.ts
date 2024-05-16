@@ -10,11 +10,11 @@ import { detailsResolver } from "./resolvers/details.resolver";
 
 export const CV_ROUTES = [
   {
-    path: 'cv',
+    path: '',
     component: CvComponent,
   },
   {
-    path: 'cv/list',
+    path: 'list',
     component: MasterDetailsComponent,
     children: [
       {
@@ -26,9 +26,9 @@ export const CV_ROUTES = [
       },
     ],
   },
-  { path: 'cv/add', component: AddCvComponent, canActivate: [authGuard] },
+  { path: 'add', component: AddCvComponent, canActivate: [authGuard] },
   {
-    path: 'cv/:id',
+    path: ':id',
     component: DetailsCvComponent,
     resolve: {
       cv: detailsResolver,
