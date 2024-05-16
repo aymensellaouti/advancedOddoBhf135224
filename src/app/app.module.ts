@@ -50,6 +50,11 @@ import { v4 as uuidv4 } from 'uuid';
 import { UUID_TOKEN } from './provider tokens/uuid.provider-token';
 import { FromOfComponent } from './rxjs/from-of/from-of.component';
 import { SliderComponent } from './rxjs/slider/slider.component';
+import { PereCdComponent } from './cd/pere-cd/pere-cd.component';
+import { FilsCdComponent } from './cd/fils-cd/fils-cd.component';
+import { UserListElementsComponent } from './optimizationPattern/rh/user-list-elements/user-list-elements.component';
+import { AddUserComponent } from './optimizationPattern/rh/add-user/add-user.component';
+import { FiboPipe } from './pipes/fibo.pipe';
 
 
 @NgModule({
@@ -82,6 +87,11 @@ import { SliderComponent } from './rxjs/slider/slider.component';
     FromOfComponent,
     SliderComponent,
     CardProfilComponent,
+    PereCdComponent,
+    FilsCdComponent,
+    UserListElementsComponent,
+    AddUserComponent,
+    FiboPipe,
   ],
   imports: [
     BrowserModule,

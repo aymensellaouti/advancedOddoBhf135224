@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, NgZone, OnInit, inject} from '@angular/core';
 import {User, UsersService} from "../users.service";
 import * as ChartJs from 'chart.js/auto';
 @Component({
@@ -10,16 +10,20 @@ export class RhComponent implements OnInit {
   oddUsers: User[];
   evenUsers: User[];
   chart: any;
-  constructor(private userService: UsersService) {
+  zone = inject(NgZone)
+  constructor(
+    private userService: UsersService) {
     this.oddUsers = this.userService.getOddOrEven(true);
     this.evenUsers = this.userService.getOddOrEven();
   }
 
   ngOnInit(): void {
-        this.createChart();
+    this.zone.runOutsideAngular(() => {
+      this.createChart();
+    })
     }
-  addUser(list: User[], newUser: string) {
-    this.userService.addUser(list, newUser);
+  addUser(list: User[], newUser: string): User[] {
+    return this.userService.addUser(list, newUser);
   }
   createChart(){
     const data = [
