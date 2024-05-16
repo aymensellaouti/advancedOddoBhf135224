@@ -20,32 +20,14 @@ import { ProductsComponent } from "./products/products.component";
 const routes: Route[] = [
   { path: 'login', component: LoginComponent },
   { path: 'rh', component: RhComponent },
+  {
+    path: 'todo',
+    loadChildren: () => import('./todo/todo.module').then(
+      m => m.TodoModule
+    )
+  },
   { path: 'products', component: ProductsComponent },
-  {
-    path: 'cv',
-    component: CvComponent,
-  },
-  {
-    path: 'cv/list',
-    component: MasterDetailsComponent,
-    children: [
-      {
-        path: ':id',
-        component: DetailsCvComponent,
-        resolve: {
-          cv: detailsResolver,
-        },
-      },
-    ],
-  },
-  { path: 'cv/add', component: AddCvComponent, canActivate: [authGuard] },
-  {
-    path: 'cv/:id',
-    component: DetailsCvComponent,
-    resolve: {
-      cv: detailsResolver,
-    },
-  },
+
   {
     path: '',
     component: FrontComponent,

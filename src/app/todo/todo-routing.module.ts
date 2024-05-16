@@ -5,7 +5,7 @@ import { TodoComponent } from "./todo/todo.component";
 
 
 const TODO_ROUTES: Routes = [
-  { path: 'todo', component: TodoComponent, canDeactivate: [canLeaveGuard] },
+  { path: '', component: TodoComponent, canDeactivate: [canLeaveGuard] },
 ];
 
 @NgModule({

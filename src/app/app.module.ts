@@ -2,7 +2,7 @@ import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { ToastrModule } from 'ngx-toastr';
 
@@ -15,14 +15,10 @@ import { CardProfilComponent } from './components/card-profil/card-profil.compon
 import { PereComponent } from './components/pere/pere.component';
 import { FilsComponent } from './components/fils/fils.component';
 
-import { AddCvComponent } from './cv/add-cv/add-cv.component';
-import { CvComponent } from './cv/cv/cv.component';
-import { DetailsCvComponent } from './cv/details-cv/details-cv.component';
 
 import { NgstyleComponent } from './directives/ngstyle/ngstyle.component';
 import { MiniWordComponent } from './directives/mini-word/mini-word.component';
 import { NgclassComponent } from './directives/ngclass/ngclass.component';
-import { TodoComponent } from './todo/todo/todo.component';
 
 import { HighlightDirective } from './directives/highlight.directive';
 import { RainbowDirective } from './directives/rainbow.directive';
@@ -38,11 +34,6 @@ import { LoginComponent } from './auth/login/login.component';
 import { TestObservableComponent } from './components/test-observable/test-observable.component';
 import { TestHttpComponent } from './components/test-http/test-http.component';
 import { AuthInterceptorProvider } from './auth/interceptors/auth.interceptor';
-import { ListComponent } from './cv/list/list.component';
-import { ItemComponent } from './cv/item/item.component';
-import { DefaultImagePipe } from './cv/pipes/default-image.pipe';
-import { EmbaucheComponent } from './cv/embauche/embauche.component';
-import { CvCardComponent } from './cv/cv-card/cv-card.component';
 import { RhComponent } from './optimizationPattern/rh/rh.component';
 import { UserListComponent } from './optimizationPattern/user-list/user-list.component';
 import { ProductsComponent } from './products/products.component';
@@ -57,12 +48,10 @@ import { Logger2Service } from './services/logger2.service';
 
 import { v4 as uuidv4 } from 'uuid';
 import { UUID_TOKEN } from './provider tokens/uuid.provider-token';
-import { WeekTodoComponent } from './todo/week-todo/week-todo.component';
-import { MasterDetailsComponent } from './cv/master-details/master-details.component';
 import { FromOfComponent } from './rxjs/from-of/from-of.component';
 import { SliderComponent } from './rxjs/slider/slider.component';
-import { AutocompleteComponent } from './cv/autocomplete/autocomplete.component';
 import { TodoModule } from './todo/todo.module';
+import { CvModule } from './cv/cv.module';
 
 @NgModule({
   declarations: [
@@ -74,15 +63,6 @@ import { TodoModule } from './todo/todo.module';
     CardProfilComponent,
     PereComponent,
     FilsComponent,
-    AddCvComponent,
-    CvComponent,
-    ListComponent,
-    ItemComponent,
-    DetailsCvComponent,
-    CvCardComponent,
-    CardProfilComponent,
-    EmbaucheComponent,
-    DefaultImagePipe,
     NgstyleComponent,
     MiniWordComponent,
     NgclassComponent,
@@ -100,10 +80,10 @@ import { TodoModule } from './todo/todo.module';
     RhComponent,
     UserListComponent,
     ProductsComponent,
-    MasterDetailsComponent,
     FromOfComponent,
     SliderComponent,
-    AutocompleteComponent,
+
+    CardProfilComponent,
   ],
   imports: [
     BrowserModule,
@@ -112,7 +92,7 @@ import { TodoModule } from './todo/todo.module';
     ToastrModule.forRoot(), // ToastrModule added
     AppRoutingModule,
     HttpClientModule,
-    TodoModule,
+    CvModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
@@ -136,10 +116,8 @@ import { TodoModule } from './todo/todo.module';
     // LoggerService
     {
       provide: CvService,
-      useClass: CONSTANTES.env === 'prod'
-                ? FakeCvService:
-                CvService
-     },
+      useClass: CONSTANTES.env === 'prod' ? FakeCvService : CvService,
+    },
     //  {
     //   provide: LoggerService,
     //   useClass: LoggerService,
@@ -150,11 +128,10 @@ import { TodoModule } from './todo/todo.module';
     //   useClass: Logger2Service,
     //   multi: true
     //  },
-     {
+    {
       provide: UUID_TOKEN,
-      useValue: () => 'dima howa bidou'
-     }
-
+      useValue: () => 'dima howa bidou',
+    },
   ],
   bootstrap: [AppComponent],
 })
