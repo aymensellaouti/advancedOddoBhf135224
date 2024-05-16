@@ -62,6 +62,7 @@ import { MasterDetailsComponent } from './cv/master-details/master-details.compo
 import { FromOfComponent } from './rxjs/from-of/from-of.component';
 import { SliderComponent } from './rxjs/slider/slider.component';
 import { AutocompleteComponent } from './cv/autocomplete/autocomplete.component';
+import { TodoModule } from './todo/todo.module';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,6 @@ import { AutocompleteComponent } from './cv/autocomplete/autocomplete.component'
     HighlightDirective,
     RainbowDirective,
     Btc2usdPipe,
-    TodoComponent,
     NavbarComponent,
     FrontComponent,
     AdminComponent,
@@ -100,7 +100,6 @@ import { AutocompleteComponent } from './cv/autocomplete/autocomplete.component'
     RhComponent,
     UserListComponent,
     ProductsComponent,
-    WeekTodoComponent,
     MasterDetailsComponent,
     FromOfComponent,
     SliderComponent,
@@ -113,6 +112,7 @@ import { AutocompleteComponent } from './cv/autocomplete/autocomplete.component'
     ToastrModule.forRoot(), // ToastrModule added
     AppRoutingModule,
     HttpClientModule,
+    TodoModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),

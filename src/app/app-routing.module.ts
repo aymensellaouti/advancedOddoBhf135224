@@ -50,7 +50,6 @@ const routes: Route[] = [
     path: '',
     component: FrontComponent,
     children: [
-      { path: 'todo', component: TodoComponent, canDeactivate: [canLeaveGuard] },
       { path: 'word', component: MiniWordComponent },
     ],
   },
@@ -59,7 +58,7 @@ const routes: Route[] = [
     component: AdminComponent,
     children: [{ path: 'color', component: ColorComponent }],
   },
-  { path: '**', component: NF404Component },
+  // { path: '**', component: NF404Component },
 ];
 
 @NgModule({
