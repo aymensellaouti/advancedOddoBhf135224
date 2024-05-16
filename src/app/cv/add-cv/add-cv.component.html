@@ -18,7 +18,11 @@
 
   <label for="cin">Cin</label>
   <input formControlName="cin" id="cin" type="number" class="form-control" />
-
+  <div
+    *ngIf="cin.errors && cin.errors['cin']"
+    class="alert alert-danger">
+      {{ cin.errors['cin'] }}
+  </div>
   <label for="path">Path</label>
   <input formControlName="path" id="path" type="text" class="form-control" />
 
